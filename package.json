@@ -1,0 +1,25 @@
+{
+  "name": "portfolio",
+  "version": "1.0.0",
+  "description": "Welcome to the source of my portfolio.  \r Designed to be fast, dark-mode ready, and just a little bit fun 👾",
+  "main": "index.js",
+  "scripts": {
+    "build-posts": "node build-posts.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BrandonAustin01/Portfolio.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/BrandonAustin01/Portfolio/issues"
+  },
+  "homepage": "https://github.com/BrandonAustin01/Portfolio#readme",
+  "dependencies": {
+    "gray-matter": "^4.0.3",
+    "marked": "^15.0.8"
+  }
+}

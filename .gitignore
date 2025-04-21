@@ -1,0 +1,13 @@
+# Node stuff
+node_modules/
+package-lock.json
+
+# OS junk
+.DS_Store
+Thumbs.db
+
+# VS Code
+.vscode/
+
+# Markdown drafts (optional)
+posts/drafts/
