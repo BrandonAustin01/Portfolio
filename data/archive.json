@@ -2,10 +2,8 @@
   {
     "title": "📓 First Post: The Journal Begins",
     "date": "2025-04-21",
-    "tags": [
-      "meta",
-      "journal"
-    ],
-    "link": "posts/first-post.html"
+    "tags": ["meta", "journal"],
+    "link": "posts/first-post.html",
+    "snippet": "Welcome to the beginning of something real. This isn’t just a portfolio — it’s a dev journal in real time."
   }
 ]

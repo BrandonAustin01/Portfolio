@@ -80,6 +80,13 @@
         </a>
       </section>
 
+      <section class="recent-post">
+        <h2>📝 Latest Journal Entry</h2>
+        <div id="latest-post-card" class="post-card fade-slide">
+          <p><em>Loading latest post...</em></p>
+        </div>
+      </section>
+
       <section class="projects">
         <h2>🚀 Featured Projects</h2>
         <ul>
@@ -95,5 +102,35 @@
     </footer>
 
     <script src="assets/js/main.js"></script>
+    <script>
+      fetch("data/archive.json")
+        .then((res) => res.json())
+        .then((posts) => {
+          const latest = posts[0];
+          const card = document.getElementById("latest-post-card");
+
+          // Optional preview text fallback
+          const defaultSnippet =
+            "A new journal entry has arrived — peek inside to see what’s building behind the scenes.";
+
+          card.innerHTML = `
+            <h3>${latest.title}</h3>
+            <p><small>${latest.date}</small></p>
+            <div class="tags">
+              ${latest.tags
+                .map((tag) => `<span class="tag">#${tag}</span>`)
+                .join(" ")}
+            </div>
+            <div class="post-snippet">
+              <p>${latest.snippet || defaultSnippet}</p>
+            </div>
+            <p><a href="${latest.link}" class="btn">Read Post →</a></p>
+          `;
+        })
+        .catch(() => {
+          document.getElementById("latest-post-card").innerHTML =
+            "<p>⚠️ Could not load latest post.</p>";
+        });
+    </script>
   </body>
 </html>

@@ -70,12 +70,24 @@ for (const file of files) {
   fs.writeFileSync(outputPath, template(title, html));
   console.log(`✅ Built: ${htmlFileName}`);
 
+  let snippet = data.snippet;
+  if (!snippet) {
+    const firstParagraph = content
+      .split("\n")
+      .find(line => line.trim().length > 40); // Skip empty or short lines
+    snippet = firstParagraph
+      ? firstParagraph.trim().replace(/[#>*_`]/g, "")
+      : "New journal entry available.";
+  }
+
   entries.push({
     title,
     date,
     tags,
-    link: `posts/${htmlFileName}`
+    link: `posts/${htmlFileName}`,
+    snippet
   });
+  
 }
 
 // Sort and write to archive.json

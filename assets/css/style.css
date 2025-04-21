@@ -649,3 +649,116 @@ body.light {
   font-size: 1.05rem;
   line-height: 1.7;
 }
+
+/* ====== Recent Post Card ====== */
+.recent-post {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recent-post h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.post-card {
+  background: var(--card-bg);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0.75rem rgba(0, 209, 178, 0.3);
+  animation: cardGlow 3s infinite ease-in-out, fadeSlideIn 0.8s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+@keyframes cardGlow {
+  0%, 100% {
+    box-shadow: 0 0 0.75rem rgba(0, 209, 178, 0.3);
+  }
+  50% {
+    box-shadow: 0 0 1.25rem rgba(0, 209, 178, 0.6);
+  }
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  /* no animation change — let the pulse continue */
+  box-shadow: 0 0 1.5rem rgba(0, 209, 178, 0.75);
+  
+}
+
+.post-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-card small {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.post-card .tags {
+  margin: 1rem 0 1rem;
+}
+
+.post-card .tag {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  margin-right: 0.5rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.post-card .tag:hover {
+  background: #fff;
+  color: var(--accent);
+  cursor: default;
+}
+
+/* 🔥 Multi-line clamped snippet preview */
+.post-card .post-snippet {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.6;
+  margin-top: 1.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3; /* max 3 lines */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(1.6em * 3); /* fallback height */
+}
+
+.post-card .btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--bg);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 1rem var(--accent);
+}
+
+@keyframes cardGlowBoost {
+  0%, 100% {
+    box-shadow: 0 0 1rem rgba(0, 209, 178, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 2rem rgba(0, 209, 178, 0.75);
+  }
+}
