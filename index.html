@@ -106,10 +106,11 @@
       fetch("data/archive.json")
         .then((res) => res.json())
         .then((posts) => {
-          const latest = posts[0];
-          const card = document.getElementById("latest-post-card");
+          const latest = posts.sort(
+            (a, b) => new Date(b.date) - new Date(a.date)
+          )[0];
 
-          // Optional preview text fallback
+          const card = document.getElementById("latest-post-card");
           const defaultSnippet =
             "A new journal entry has arrived — peek inside to see what’s building behind the scenes.";
 
