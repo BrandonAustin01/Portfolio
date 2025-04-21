@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Status • Brandon McKinney</title>
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+          <div class="brand">Brandon McKinney</div>
+          <button
+            id="nav-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+          <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <!-- <li><a href="archive.html">Posts</a></li> -->
+            <li><a href="status.html">Status</a></li>
+            <li>
+              <a href="https://github.com/BrandonAustin01" target="_blank"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <button id="theme-toggle" aria-label="Toggle dark/light theme">
+                🌗
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main" class="projects fade-slide">
+      <h2>📊 Project Status</h2>
+      <div class="status-legend">
+        <span class="legend-item">
+          <span class="legend-dot operational"></span> Operational
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot experimental"></span> Experimental
+        </span>
+        <span class="legend-item">
+          <span class="legend-dot down"></span> Down
+        </span>
+      </div>
+
+      <p>Live status for active and experimental projects.</p>
+      <ul id="status-list">
+        <!-- JavaScript will inject status cards here -->
+      </ul>
+    </main>
+
+    <footer>
+      <p>© 2025 Brandon McKinney</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/status.js"></script>
+  </body>
+</html>

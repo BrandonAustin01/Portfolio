@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Brandon McKinney • Portfolio</title>
+
+    <!-- Normalize first -->
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <!-- Your custom styles -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <!-- Favicon -->
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+
+    <!-- Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header>
+      <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+          <div class="brand">Brandon McKinney</div>
+          <button
+            id="nav-toggle"
+            aria-label="Toggle navigation"
+            aria-expanded="false"
+          >
+            ☰
+          </button>
+          <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <!-- <li><a href="archive.html">Posts</a></li> -->
+            <li><a href="status.html">Status</a></li>
+            <li>
+              <a href="https://github.com/BrandonAustin01" target="_blank"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <button id="theme-toggle" aria-label="Toggle dark/light theme">
+                🌗
+              </button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main role="main">
+      <section class="hero fade-slide">
+        <h1>Hey, I’m Brandon 👋</h1>
+        <p>
+          Full-stack explorer. Python enthusiast. Building cool stuff like
+          <strong>Chroniq</strong> & <strong>Wednesday</strong>.
+        </p>
+        <a href="status.html" class="btn btn-pulse">
+          <span class="pulse-icon" aria-hidden="true">
+            <span class="ping-ring"></span>
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              class="animated-icon"
+            >
+              <polyline
+                points="13 2 13 12 17 12 7 22 7 12 3 12 13 2"
+              ></polyline>
+            </svg>
+          </span>
+          Check Status
+        </a>
+      </section>
+
+      <section class="projects">
+        <h2>🚀 Featured Projects</h2>
+        <ul>
+          <li><strong>Chroniq</strong> – CLI-first versioning system</li>
+          <li><strong>Wednesday</strong> – Local AI voice assistant</li>
+          <!-- Add more as you grow -->
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      <p>© 2025 Brandon McKinney</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

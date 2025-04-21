@@ -1,0 +1,30 @@
+[
+    {
+      "name": "Chroniq",
+      "icon": "🟢",
+      "description": "CLI-first version manager and changelog tool",
+      "status": "operational",
+      "version": "v0.8.0",
+      "lastUpdate": "2025-04-20",
+      "link": "https://github.com/BrandonAustin01/Chroniq"
+    },
+    {
+      "name": "Wednesday",
+      "icon": "🧪",
+      "description": "AI voice assistant with offline capabilities",
+      "status": "experimental",
+      "version": "v0.3.9",
+      "lastUpdate": "2025-04-18",
+      "link": "https://github.com/BrandonAustin01/Wednesday"
+    },
+    {
+      "name": "Portfolio",
+      "icon": "🟢",
+      "description": "Personal GitHub Pages portfolio you're viewing",
+      "status": "operational",
+      "version": "v1.0.0",
+      "lastUpdate": "2025-04-20",
+      "link": "https://brandonaustin01.github.io/"
+    }
+  ]
+  
