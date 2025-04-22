@@ -50,9 +50,21 @@ const template = (title, body) => `
 
 const postsDir = path.join(__dirname, "posts");
 const archivePath = path.join(__dirname, "data", "archive.json");
-const entries = [];
+
+let existingEntries = [];
+
+// ✅ Step 1: Load existing archive.json if it exists
+if (fs.existsSync(archivePath)) {
+  try {
+    const raw = fs.readFileSync(archivePath, "utf-8");
+    existingEntries = JSON.parse(raw);
+  } catch (err) {
+    console.error("❌ Failed to read or parse archive.json:", err);
+  }
+}
 
 const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
+const newEntries = [];
 
 for (const file of files) {
   const filePath = path.join(postsDir, file);
@@ -74,23 +86,39 @@ for (const file of files) {
   if (!snippet) {
     const firstParagraph = content
       .split("\n")
-      .find(line => line.trim().length > 40); // Skip empty or short lines
+      .find(line => line.trim().length > 40);
     snippet = firstParagraph
       ? firstParagraph.trim().replace(/[#>*_`]/g, "")
       : "New journal entry available.";
   }
 
-  entries.push({
+  newEntries.push({
     title,
     date,
     tags,
     link: `posts/${htmlFileName}`,
     snippet
   });
-  
 }
 
-// Sort and write to archive.json
-entries.sort((a, b) => new Date(b.date) - new Date(a.date));
-fs.writeFileSync(archivePath, JSON.stringify(entries, null, 2));
+// ✅ Step 2: Merge newEntries into existingEntries, replacing by link
+const mergedEntriesMap = new Map();
+
+// Add existing entries first
+for (const entry of existingEntries) {
+  mergedEntriesMap.set(entry.link, entry);
+}
+
+// Add or overwrite with new entries
+for (const entry of newEntries) {
+  mergedEntriesMap.set(entry.link, entry);
+}
+
+// ✅ Step 3: Convert back to array and sort by date
+const mergedEntries = Array.from(mergedEntriesMap.values()).sort(
+  (a, b) => new Date(b.date) - new Date(a.date)
+);
+
+// ✅ Step 4: Save updated archive
+fs.writeFileSync(archivePath, JSON.stringify(mergedEntries, null, 2));
 console.log("📦 Synced: data/archive.json");

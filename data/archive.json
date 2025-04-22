@@ -1,7 +1,20 @@
 [
   {
+    "title": "🎬 A Working Man — A Gritty Ride with Familiar Punches",
+    "date": "2025-04-22",
+    "tags": [
+      "film-journal",
+      "action",
+      "statham",
+      "review",
+      "harbour"
+    ],
+    "link": "posts/third-post.html",
+    "snippet": "Jason Statham delivers fists and firepower in *A Working Man*. A little *Taken*-esque, a little over the top — but undeniably fun."
+  },
+  {
     "title": "📓 This Is Wednesday — My Attempt at Building a Smarter, Safer Assistant",
-    "date": "2025-04-21",
+    "date": "2025-04-20",
     "tags": [
       "wednesday-ai",
       "journal"
@@ -11,7 +24,7 @@
   },
   {
     "title": "📓 First Post: The Journal Begins",
-    "date": "2025-04-20",
+    "date": "2025-04-19",
     "tags": [
       "meta",
       "journal"
