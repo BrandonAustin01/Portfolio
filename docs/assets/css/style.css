@@ -762,3 +762,28 @@ body.light {
     box-shadow: 0 0 2rem rgba(0, 209, 178, 0.75);
   }
 }
+
+/* 🔁 Universal Scrollbar Support */
+html {
+  scrollbar-width: thin;                          /* Firefox */
+  scrollbar-color: #5d5d5d #1c1c1c;               /* thumb, track */
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1c1c1c;
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #5d5d5d;
+  border-radius: 10px;
+  border: 2px solid #1c1c1c;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #888;
+}

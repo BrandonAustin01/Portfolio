@@ -1,11 +1,17 @@
-// build-posts.js
 const fs = require("fs");
 const path = require("path");
 const { marked } = require("marked");
 const matter = require("gray-matter");
 
-const template = (title, body) => `
-<!DOCTYPE html>
+// Slugify helper
+const slugify = str =>
+  str.toLowerCase()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-');
+
+// HTML template with slug injected as ID
+const template = (title, body, slug) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -34,7 +40,7 @@ const template = (title, body) => `
   </header>
 
   <main class="projects">
-    <article class="journal-entry">
+    <article class="journal-entry" id="${slug}">
       ${body}
     </article>
   </main>
@@ -45,15 +51,42 @@ const template = (title, body) => `
 
   <script src="../assets/js/main.js"></script>
 </body>
-</html>
-`;
+</html>`;
 
-const postsDir = path.join(__dirname, "posts");
-const archivePath = path.join(__dirname, "data", "archive.json");
+// === Paths
+const ROOT = __dirname;
+const postsDir = path.join(ROOT, "posts");
+const archivePath = path.join(ROOT, "data", "archive.json");
 
+const docsDir = path.join(ROOT, "docs");
+const docsPostsDir = path.join(docsDir, "posts");
+const docsAssetsDir = path.join(docsDir, "assets");
+const docsDataDir = path.join(docsDir, "data");
+
+// === Helpers
+function copyRecursive(src, dest) {
+  if (!fs.existsSync(src)) return;
+  fs.mkdirSync(dest, { recursive: true });
+
+  fs.readdirSync(src).forEach(file => {
+    const srcPath = path.join(src, file);
+    const destPath = path.join(dest, file);
+
+    if (fs.statSync(srcPath).isDirectory()) {
+      copyRecursive(srcPath, destPath);
+    } else {
+      fs.copyFileSync(srcPath, destPath);
+    }
+  });
+}
+
+// === Ensure target folders exist
+fs.mkdirSync(docsPostsDir, { recursive: true });
+fs.mkdirSync(docsDataDir, { recursive: true });
+fs.mkdirSync(docsAssetsDir, { recursive: true });
+
+// === Read & parse existing archive.json
 let existingEntries = [];
-
-// ✅ Step 1: Load existing archive.json if it exists
 if (fs.existsSync(archivePath)) {
   try {
     const raw = fs.readFileSync(archivePath, "utf-8");
@@ -71,15 +104,17 @@ for (const file of files) {
   const raw = fs.readFileSync(filePath, "utf-8");
 
   const { data, content } = matter(raw);
-  const html = marked.parse(content);
+  const htmlContent = marked.parse(content);
+
   const title = data.title || "Untitled Post";
   const date = typeof data.date === "string" ? data.date : new Date().toISOString().slice(0, 10);
   const tags = Array.isArray(data.tags) ? data.tags : [];
 
-  const htmlFileName = file.replace(/\.md$/, ".html");
-  const outputPath = path.join(postsDir, htmlFileName);
+  const slug = slugify(title);
+  const htmlFileName = `${slug}.html`;
+  const outputPath = path.join(docsPostsDir, htmlFileName);
 
-  fs.writeFileSync(outputPath, template(title, html));
+  fs.writeFileSync(outputPath, template(title, htmlContent, slug));
   console.log(`✅ Built: ${htmlFileName}`);
 
   let snippet = data.snippet;
@@ -97,28 +132,25 @@ for (const file of files) {
     date,
     tags,
     link: `posts/${htmlFileName}`,
+    slug,
     snippet
   });
 }
 
-// ✅ Step 2: Merge newEntries into existingEntries, replacing by link
+// === Merge and sync archive
 const mergedEntriesMap = new Map();
+for (const entry of existingEntries) mergedEntriesMap.set(entry.link, entry);
+for (const entry of newEntries) mergedEntriesMap.set(entry.link, entry);
 
-// Add existing entries first
-for (const entry of existingEntries) {
-  mergedEntriesMap.set(entry.link, entry);
-}
-
-// Add or overwrite with new entries
-for (const entry of newEntries) {
-  mergedEntriesMap.set(entry.link, entry);
-}
-
-// ✅ Step 3: Convert back to array and sort by date
 const mergedEntries = Array.from(mergedEntriesMap.values()).sort(
   (a, b) => new Date(b.date) - new Date(a.date)
 );
 
-// ✅ Step 4: Save updated archive
-fs.writeFileSync(archivePath, JSON.stringify(mergedEntries, null, 2));
-console.log("📦 Synced: data/archive.json");
+fs.writeFileSync(path.join(docsDataDir, "archive.json"), JSON.stringify(mergedEntries, null, 2));
+console.log("📦 Synced: docs/data/archive.json");
+
+// === Copy static folders to /docs
+copyRecursive(path.join(ROOT, "assets"), docsAssetsDir);
+copyRecursive(path.join(ROOT, "data"), docsDataDir); // in case status.json or others exist
+
+console.log("🚀 Build complete. Site ready in /docs/");
