@@ -3,15 +3,8 @@ const path = require("path");
 const { marked } = require("marked");
 const matter = require("gray-matter");
 
-// Slugify helper
-const slugify = str =>
-  str.toLowerCase()
-    .replace(/[^\w\s-]/g, '')
-    .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
-
-// HTML template with slug injected as ID
-const template = (title, body, slug) => `<!DOCTYPE html>
+// HTML template with ID injected
+const template = (title, body, id) => `<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -19,6 +12,7 @@ const template = (title, body, slug) => `<!DOCTYPE html>
   <title>${title} • Brandon McKinney</title>
   <link rel="stylesheet" href="../assets/css/normalize.css" />
   <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
   <link rel="icon" href="../assets/img/favicon.png" type="image/png" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet" />
 </head>
@@ -40,7 +34,7 @@ const template = (title, body, slug) => `<!DOCTYPE html>
   </header>
 
   <main class="projects">
-    <article class="journal-entry" id="${slug}">
+    <article class="journal-entry" id="${id}">
       ${body}
     </article>
   </main>
@@ -50,13 +44,15 @@ const template = (title, body, slug) => `<!DOCTYPE html>
   </footer>
 
   <script src="../assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
 </body>
 </html>`;
 
 // === Paths
 const ROOT = __dirname;
-const postsDir = path.join(ROOT, "posts");
-const archivePath = path.join(ROOT, "data", "archive.json");
+const templatesDir = path.join(ROOT, "templates");
+const archivePath = path.join(ROOT, "docs", "data", "archive.json");
 
 const docsDir = path.join(ROOT, "docs");
 const docsPostsDir = path.join(docsDir, "posts");
@@ -80,7 +76,8 @@ function copyRecursive(src, dest) {
   });
 }
 
-// === Ensure target folders exist
+// === Ensure required folders exist
+fs.mkdirSync(templatesDir, { recursive: true });
 fs.mkdirSync(docsPostsDir, { recursive: true });
 fs.mkdirSync(docsDataDir, { recursive: true });
 fs.mkdirSync(docsAssetsDir, { recursive: true });
@@ -96,11 +93,12 @@ if (fs.existsSync(archivePath)) {
   }
 }
 
-const files = fs.readdirSync(postsDir).filter(f => f.endsWith(".md"));
+// === Process each .md in /templates
+const files = fs.readdirSync(templatesDir).filter(f => f.endsWith(".md"));
 const newEntries = [];
 
 for (const file of files) {
-  const filePath = path.join(postsDir, file);
+  const filePath = path.join(templatesDir, file);
   const raw = fs.readFileSync(filePath, "utf-8");
 
   const { data, content } = matter(raw);
@@ -110,11 +108,11 @@ for (const file of files) {
   const date = typeof data.date === "string" ? data.date : new Date().toISOString().slice(0, 10);
   const tags = Array.isArray(data.tags) ? data.tags : [];
 
-  const slug = slugify(title);
-  const htmlFileName = `${slug}.html`;
+  const baseName = path.basename(file, ".md").toLowerCase();
+  const htmlFileName = `${baseName}.html`;
   const outputPath = path.join(docsPostsDir, htmlFileName);
 
-  fs.writeFileSync(outputPath, template(title, htmlContent, slug));
+  fs.writeFileSync(outputPath, template(title, htmlContent, baseName));
   console.log(`✅ Built: ${htmlFileName}`);
 
   let snippet = data.snippet;
@@ -127,30 +125,29 @@ for (const file of files) {
       : "New journal entry available.";
   }
 
-  newEntries.push({
-    title,
-    date,
-    tags,
-    link: `posts/${htmlFileName}`,
-    slug,
-    snippet
-  });
+  const linkPath = `posts/${htmlFileName}`;
+  if (!existingEntries.find(e => e.link === linkPath)) {
+    newEntries.push({
+      title,
+      date,
+      tags,
+      link: linkPath,
+      slug: baseName,
+      snippet
+    });
+  }
 }
 
-// === Merge and sync archive
-const mergedEntriesMap = new Map();
-for (const entry of existingEntries) mergedEntriesMap.set(entry.link, entry);
-for (const entry of newEntries) mergedEntriesMap.set(entry.link, entry);
-
-const mergedEntries = Array.from(mergedEntriesMap.values()).sort(
+// === Merge and update archive
+const allEntries = [...existingEntries, ...newEntries].sort(
   (a, b) => new Date(b.date) - new Date(a.date)
 );
 
-fs.writeFileSync(path.join(docsDataDir, "archive.json"), JSON.stringify(mergedEntries, null, 2));
+fs.writeFileSync(archivePath, JSON.stringify(allEntries, null, 2));
 console.log("📦 Synced: docs/data/archive.json");
 
 // === Copy static folders to /docs
 copyRecursive(path.join(ROOT, "assets"), docsAssetsDir);
-copyRecursive(path.join(ROOT, "data"), docsDataDir); // in case status.json or others exist
+copyRecursive(path.join(ROOT, "data"), docsDataDir);
 
 console.log("🚀 Build complete. Site ready in /docs/");

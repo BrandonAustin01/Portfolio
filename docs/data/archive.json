@@ -1,5 +1,16 @@
 [
   {
+    "title": "📓 Hello, World!",
+    "date": "2025-04-24",
+    "tags": [
+      "devlog",
+      "hello-world"
+    ],
+    "link": "posts/fourth-post.html",
+    "slug": "fourth-post",
+    "snippet": "brandonmckinney.dev is live, from here we can only go up!"
+  },
+  {
     "title": "🎬 A Working Man — A Gritty Ride with Familiar Punches",
     "date": "2025-04-22",
     "tags": [
