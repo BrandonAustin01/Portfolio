@@ -1,5 +1,16 @@
 [
   {
+    "title": "📓 Caine, Revived",
+    "date": "2025-05-05",
+    "tags": [
+      "devlog",
+      "hello-world"
+    ],
+    "link": "posts/fifth-post.html",
+    "slug": "fifth-post",
+    "snippet": "Caine, The modular, security-first Discord bot!"
+  },
+  {
     "title": "📓 Hello, World!",
     "date": "2025-04-24",
     "tags": [

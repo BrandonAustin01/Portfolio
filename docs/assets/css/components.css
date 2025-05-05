@@ -1,0 +1,85 @@
+/* ====== Components (Buttons, Icons, Extras) ====== */
+
+/* 🎯 Smooth Status-Themed Pulse (Green → Yellow → Red → repeat) */
+.btn-pulse {
+    animation: pulseStatusColors 4s infinite ease-in-out;
+    color: #111; /* readable across all color states */
+  }
+  
+  @keyframes pulseStatusColors {
+    0% {
+      background-color: #00e676; /* green */
+      box-shadow: 0 0 0px #00e676;
+    }
+    33% {
+      background-color: #ffcc00; /* yellow */
+      box-shadow: 0 0 10px #ffcc00;
+    }
+    66% {
+      background-color: #ff5252; /* red */
+      box-shadow: 0 0 10px #ff5252;
+    }
+    100% {
+      background-color: #00e676; /* green again */
+      box-shadow: 0 0 0px #00e676;
+    }
+  }
+  
+  /* ====== Section Animations ====== */
+  .fade-slide {
+    opacity: 0;
+    transform: translateY(30px);
+    animation: fadeSlideIn 0.8s ease-out forwards;
+  }
+  
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ====== Animated SVG Icon ====== */
+  .pulse-icon {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 0.5rem;
+    width: 20px;
+    height: 20px;
+  }
+  
+  /* ⚙️ Smooth Rotate + Subtle Scale Pulse */
+  .animated-icon {
+    position: relative;
+    z-index: 1;
+    animation: rotatePulse 4s infinite ease-in-out;
+  }
+  
+  @keyframes rotatePulse {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2) rotate(10deg);
+      opacity: 0.9;
+    }
+  }
+  
+  /* Ping ring animation */
+  @keyframes ringPulse {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.2;
+    }
+    70% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  

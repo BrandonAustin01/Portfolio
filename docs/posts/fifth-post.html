@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📓 Caine, Revived • Brandon McKinney</title>
+  <link rel="stylesheet" href="../assets/css/normalize.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <link rel="icon" href="../assets/img/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <div class="brand">Brandon McKinney</div>
+        <button id="nav-toggle" aria-label="Toggle Menu">☰</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../archive.html" class="active">Archive</a></li>
+          <li><a href="../status.html">Status</a></li>
+          <li><a href="https://github.com/BrandonAustin01" target="_blank">GitHub</a></li>
+          <li><button id="theme-toggle" aria-label="Toggle Theme">🌗</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="projects">
+    <article class="journal-entry" id="fifth-post">
+      <p><img src="https://github.com/user-attachments/assets/16005504-35ce-48c8-b5c0-ac98947155f0" alt="Caine Logo Final-01"></p>
+<h1 align="center">🛡️ Caine — The Guardian of Your Discord</h1>
+
+<p align="center">
+  <b>Caine</b> is a modular, security-first Discord bot designed for communities that demand stability, control, and customizability.
+  <br><br>
+  <img alt="License" src="https://img.shields.io/github/license/BrandonAustin01/Caine?style=flat-square">
+  <img alt="Built With" src="https://img.shields.io/badge/Built%20With-Node.js%20%7C%20Discord.js-blue?style=flat-square">
+  <img alt="Status" src="https://img.shields.io/badge/status-under%20active%20development-yellow?style=flat-square">
+</p>
+
+<hr>
+<h3>🚀 Features</h3>
+<ul>
+<li>🎯 Anti-Raid Protection</li>
+<li>🧠 XP + Level Ranking with Role Rewards</li>
+<li>⚙️ Slash + Prefix Commands</li>
+<li>🤖 Fully Modular Command Loading</li>
+<li>🛠️ Admin Toolkits (<code>/rank admin</code>)</li>
+<li>🔍 Logging, Spam Filtering, Kick Abuse Detection</li>
+</ul>
+<hr>
+<h3>🔧 Admin Slash Commands</h3>
+<table>
+<thead>
+<tr>
+<th>Command</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>/rank view</code></td>
+<td>View user XP and level</td>
+</tr>
+<tr>
+<td><code>/rank admin setxp</code></td>
+<td>Set a user’s XP</td>
+</tr>
+<tr>
+<td><code>/rank admin addxp</code></td>
+<td>Add XP to a user</td>
+</tr>
+<tr>
+<td><code>/rank admin reset</code></td>
+<td>Reset a user’s level</td>
+</tr>
+<tr>
+<td><code>/rank admin promote</code></td>
+<td>Promote user by N levels</td>
+</tr>
+<tr>
+<td><code>/rank admin demote</code></td>
+<td>Demote user by N levels</td>
+</tr>
+<tr>
+<td><code>/rank admin info</code></td>
+<td>Show raw XP/level and role status</td>
+</tr>
+</tbody></table>
+<hr>
+<h3>⚙️ JSON Configuration ⚙️</h3>
+<pre><code class="language-json">&quot;antiRaid&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;maxJoins&quot;: 5,
+    &quot;intervalMs&quot;: 10000,
+    &quot;cooldownMs&quot;: 60000,
+    &quot;punishment&quot;: &quot;kick&quot;,
+    &quot;minAccountAgeMinutes&quot;: 5
+  },
+
+  &quot;spamFilter&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;maxMessages&quot;: 5,
+    &quot;intervalMs&quot;: 5000,
+    &quot;cooldownMs&quot;: 60000,
+    &quot;punishment&quot;: &quot;kick&quot;,
+    &quot;logToSecurity&quot;: true,
+    &quot;maxMentions&quot;: 5,
+    &quot;blockMassMentions&quot;: true
+  },
+
+  &quot;antiKickAbuse&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;maxKicks&quot;: 3,
+    &quot;intervalMs&quot;: 10000,
+    &quot;cooldownMs&quot;: 60000,
+    &quot;autoLockdown&quot;: true
+  },
+
+  &quot;botJoinBlocker&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;punishment&quot;: &quot;kick&quot;,
+    &quot;allowlist&quot;: [&quot;&quot;],
+    &quot;logToSecurity&quot;: true,
+    &quot;alertOnTrigger&quot;: true
+  },
+
+  &quot;webhookMonitor&quot;: {
+    &quot;enabled&quot;: true,
+    &quot;logToSecurity&quot;: true,
+    &quot;alertOnTrigger&quot;: true,
+    &quot;autoDelete&quot;: true,
+    &quot;whitelistUsers&quot;: [&quot;&quot;]
+  },
+</code></pre>
+<hr>
+<h3>💬 Support &amp; Feedback</h3>
+<p>Need help or want to contribute to Caine&#39;s mission?</p>
+<ul>
+<li>📖 See the full Wiki: <a href="https://github.com/BrandonAustin01/cain/wiki">CaineBot Wiki</a></li>
+<li>🛠️ <a href="https://discord.gg/3fzCgEHYqU">Join the Caine Community Server</a></li>
+<li>📬 Feature requests and bug reports are welcome in <a href="https://github.com/BrandonAustin01/Caine/issues">GitHub Issues</a></li>
+<li>💡 PRs should target the <code>main</code> branch after local testing</li>
+</ul>
+<p>Thanks for being part of the Caine initiative.</p>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2025 Brandon McKinney</p>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

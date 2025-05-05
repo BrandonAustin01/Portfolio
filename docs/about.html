@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Portfolio of Brandon McKinney — full-stack dev and builder of Chroniq, Wednesday, and SeeGraysVision."
+    />
+    <title>About</title>
+
+    <link rel="stylesheet" href="assets/css/normalize.css" />
+    <link rel="stylesheet" href="assets/css/style.css" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/simplebar@latest/dist/simplebar.min.css"
+    />
+    <link rel="icon" href="assets/img/favicon.png" type="image/png" />
+  </head>
+
+  <body>
+    <header>
+      <nav role="navigation" aria-label="Main navigation">
+        <div class="nav-container">
+          <div class="brand">Brandon McKinney</div>
+          <button id="nav-toggle" aria-label="Toggle navigation">☰</button>
+          <ul id="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="archive.html">Posts</a></li>
+            <li><a href="status.html">Status</a></li>
+            <li><a href="about.html">About</a></li>
+            <li>
+              <a href="https://github.com/BrandonAustin01" target="_blank"
+                >GitHub</a
+              >
+            </li>
+            <li>
+              <button id="theme-toggle" aria-label="Toggle theme">🌗</button>
+            </li>
+          </ul>
+        </div>
+      </nav>
+    </header>
+
+    <main>
+      <!-- Hero -->
+      <section class="hero">
+        <div class="hero-bg-slideshow"></div>
+        <div class="hero-terminal">
+          <h1 id="typewriter" class="typewriter-line"></h1>
+          <span id="cursor" class="blinking-cursor">_</span>
+        </div>
+        <p id="subtitle" class="hero-subtitle"></p>
+      </section>
+
+      <!-- Timeline -->
+      <section class="projects" id="timeline">
+        <h2>🧭 Journey So Far</h2>
+        <ul>
+          <li class="status-card operational">
+            <h3>🔧 Chroniq</h3>
+            <p>
+              Smart versioning and changelog management. Built for devs who ship
+              often and log everything.
+            </p>
+          </li>
+
+          <li class="status-card development">
+            <h3>🔐 Caine</h3>
+            <p>
+              Caine is a modular, security-first Discord bot designed for
+              stability, control, and customizability.
+            </p>
+          </li>
+
+          <li class="status-card experimental">
+            <h3>🗣️ Wednesday</h3>
+            <p>
+              Voice-first, offline-first AI assistant that respects your privacy
+              — and your shell.
+            </p>
+          </li>
+
+      <!-- Motivation 
+      <section class="recent-post">
+        <h2>🧠 What Drives Me</h2>
+        <div class="post-card">
+          <h3>“ should feel like second nature.”</h3>
+          <p class="post-snippet">
+            Every line of code I ship tries to make someone faster, or more
+            confident. I don’t just write — I try to refine. Whether it’s a
+            command-line utility or a visual gallery, I try to build software
+            that actually feels good to use.
+          </p>
+          <a class="btn" href="archive.html">Read More Posts</a>
+        </div>
+      </section>
+      -->
+    </main>
+
+    <footer>
+      <p>© 2025 Brandon McKinney</p>
+    </footer>
+
+    <script src="assets/js/main.js"></script>
+    <script>
+      const text = "About Me";
+      const typeTarget = document.getElementById("typewriter");
+      const cursor = document.getElementById("cursor");
+      const subtitle = document.getElementById("subtitle");
+
+      const enableSound = false; // toggle this to `true` for typing sound
+      const typingSound = new Audio("assets/sfx/type-key.mp3");
+
+      let i = 0;
+      const speed = 100;
+
+      function typeWithCursor() {
+        if (i < text.length) {
+          typeTarget.textContent += text.charAt(i);
+          if (enableSound) typingSound.play().catch(() => {});
+          i++;
+          setTimeout(typeWithCursor, speed);
+        } else {
+          cursor.style.display = "none";
+          subtitle.classList.add("visible");
+        }
+      }
+
+      window.addEventListener("DOMContentLoaded", typeWithCursor);
+    </script>
+  </body>
+</html>

@@ -1,0 +1,108 @@
+/* ====== Animations ====== */
+
+/* ✨ Fade In Up Animation */
+@keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ✨ Fade Slide In Animation */
+  @keyframes fadeSlideIn {
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ✨ Smooth Fade Slide In (Hero Section) */
+  @keyframes smoothFadeSlideIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  /* ✨ Rotate Pulse Animation */
+  @keyframes rotatePulse {
+    0%, 100% {
+      transform: scale(1) rotate(0deg);
+      opacity: 1;
+    }
+    50% {
+      transform: scale(1.2) rotate(10deg);
+      opacity: 0.9;
+    }
+  }
+  
+  /* ✨ Ring Pulse Animation */
+  @keyframes ringPulse {
+    0% {
+      transform: scale(0.6);
+      opacity: 0.2;
+    }
+    70% {
+      transform: scale(1.4);
+      opacity: 0;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+  
+  /* ✨ Card Glow Animation (Post Card Pulse) */
+  @keyframes cardGlow {
+    0%, 100% {
+      box-shadow: 0 0 0.75rem rgba(0, 209, 178, 0.3);
+    }
+    50% {
+      box-shadow: 0 0 1.25rem rgba(0, 209, 178, 0.6);
+    }
+  }
+  
+  /* ✨ Boosted Card Glow */
+  @keyframes cardGlowBoost {
+    0%, 100% {
+      box-shadow: 0 0 1rem rgba(0, 209, 178, 0.4);
+    }
+    50% {
+      box-shadow: 0 0 2rem rgba(0, 209, 178, 0.75);
+    }
+  }
+  
+  /* ✨ Glitch Flicker Animation */
+  @keyframes glitch-flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+  }
+  
+  /* ✨ Glitch Shift Animation 1 */
+  @keyframes glitch-anim-1 {
+    0% { clip: rect(10px, 9999px, 15px, 0); transform: translate(-2px, -2px); }
+    50% { clip: rect(50px, 9999px, 80px, 0); transform: translate(2px, 2px); }
+    100% { clip: rect(10px, 9999px, 15px, 0); transform: translate(-1px, 1px); }
+  }
+  
+  /* ✨ Glitch Shift Animation 2 */
+  @keyframes glitch-anim-2 {
+    0% { clip: rect(60px, 9999px, 70px, 0); transform: translate(1px, -1px); }
+    50% { clip: rect(20px, 9999px, 30px, 0); transform: translate(-3px, 0); }
+    100% { clip: rect(60px, 9999px, 70px, 0); transform: translate(3px, 2px); }
+  }
+  
+  /* ✨ Typewriter Cursor Blink */
+  @keyframes blink {
+    50% {
+      opacity: 0;
+    }
+  }
+  
