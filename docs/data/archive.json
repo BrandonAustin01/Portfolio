@@ -2,10 +2,7 @@
   {
     "title": "📓 Caine, Revived",
     "date": "2025-05-05",
-    "tags": [
-      "devlog",
-      "hello-world"
-    ],
+    "tags": ["devlog", "caine", "discord", "bot"],
     "link": "posts/fifth-post.html",
     "slug": "fifth-post",
     "snippet": "Caine, The modular, security-first Discord bot!"
@@ -13,10 +10,7 @@
   {
     "title": "📓 Hello, World!",
     "date": "2025-04-24",
-    "tags": [
-      "devlog",
-      "hello-world"
-    ],
+    "tags": ["devlog", "hello-world"],
     "link": "posts/fourth-post.html",
     "slug": "fourth-post",
     "snippet": "brandonmckinney.dev is live, from here we can only go up!"
@@ -24,33 +18,21 @@
   {
     "title": "🎬 A Working Man — A Gritty Ride with Familiar Punches",
     "date": "2025-04-22",
-    "tags": [
-      "film-journal",
-      "action",
-      "statham",
-      "review",
-      "harbour"
-    ],
+    "tags": ["film-journal", "action", "statham", "review", "harbour"],
     "link": "posts/third-post.html",
     "snippet": "Jason Statham delivers fists and firepower in *A Working Man*. A little *Taken*-esque, a little over the top — but undeniably fun."
   },
   {
     "title": "📓 This Is Wednesday — My Attempt at Building a Smarter, Safer Assistant",
     "date": "2025-04-20",
-    "tags": [
-      "wednesday-ai",
-      "journal"
-    ],
+    "tags": ["wednesday-ai", "journal"],
     "link": "posts/second-post.html",
     "snippet": "A behind-the-scenes look at Wednesday — my offline-first, voice-powered AI assistant built to respect your privacy."
   },
   {
     "title": "📓 First Post: The Journal Begins",
     "date": "2025-04-19",
-    "tags": [
-      "meta",
-      "journal"
-    ],
+    "tags": ["meta", "journal"],
     "link": "posts/first-post.html",
     "snippet": "Welcome to the beginning of something real. This isn’t just a portfolio — it’s a dev journal in real time."
   }
