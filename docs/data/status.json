@@ -18,6 +18,15 @@
     "link": "https://github.com/BrandonAustin01/Caine"
   },
   {
+    "name": "See Gray's Vision",
+    "icon": "🟢",
+    "description": "The world of See Gray's Vision, a personal project of CJ Gray.",
+    "status": "operational",
+    "version": "v2.8.13",
+    "lastUpdate": "2025-05-07",
+    "link": "https://seegraysvision.com"
+  },
+  {
     "name": "Wednesday",
     "icon": "🧪",
     "description": "AI voice assistant with offline capabilities",

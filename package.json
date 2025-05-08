@@ -1,6 +1,6 @@
 {
   "name": "portfolio",
-  "version": "1.0.0",
+  "version": "1.7.3",
   "description": "Welcome to the source of my portfolio.  \r Designed to be fast, dark-mode ready, and just a little bit fun 👾",
   "main": "index.js",
   "scripts": {
