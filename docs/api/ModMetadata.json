@@ -1,0 +1,47 @@
+[
+  {
+    "ModName": "Lookup Anything",
+    "Version": "1.34.2",
+    "DownloadUrl": "https://github.com/Pathoschild/StardewMods/releases/download/LookupAnything-1.34.2/LookupAnything.zip",
+    "Author": "Pathoschild",
+    "Description": "In-game info on everything.",
+    "Dependencies": "SMAPI",
+    "GameVersion": "1.5.6"
+  },
+  {
+    "ModName": "Stardew Valley Expanded",
+    "Version": "1.14.3",
+    "DownloadUrl": "https://github.com/FlashShifter/StardewValleyExpanded/releases/download/1.14.3/StardewValleyExpanded.zip",
+    "Author": "FlashShifter",
+    "Description": "Expands the game with new characters, events, and locations.",
+    "Dependencies": "SMAPI, Content Patcher",
+    "GameVersion": "1.5.6"
+  },
+  {
+    "ModName": "Automate",
+    "Version": "1.27.0",
+    "DownloadUrl": "https://github.com/Pathoschild/StardewMods/releases/download/Automate-1.27.0/Automate.zip",
+    "Author": "Pathoschild",
+    "Description": "Automatically processes items using nearby chests and machines.",
+    "Dependencies": "SMAPI",
+    "GameVersion": "1.5.6"
+  },
+  {
+    "ModName": "Content Patcher",
+    "Version": "1.32.3",
+    "DownloadUrl": "https://github.com/Pathoschild/StardewMods/releases/download/ContentPatcher-1.32.3/ContentPatcher.zip",
+    "Author": "Pathoschild",
+    "Description": "Allows modders to load custom content without replacing game files.",
+    "Dependencies": "SMAPI",
+    "GameVersion": "1.5.6"
+  },
+  {
+    "ModName": "Tractor Mod",
+    "Version": "4.14.0",
+    "DownloadUrl": "https://github.com/Pathoschild/StardewMods/releases/download/TractorMod-4.14.0/TractorMod.zip",
+    "Author": "Pathoschild",
+    "Description": "Adds a tractor that helps you clear weeds, till soil, and more.",
+    "Dependencies": "SMAPI, Custom Farm Types",
+    "GameVersion": "1.5.6"
+  }
+]
