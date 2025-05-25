@@ -1,5 +1,17 @@
 [
   {
+    "title": "📓 Chronilog 🪵",
+    "date": "2025-05-23",
+    "tags": [
+      "devlog",
+      "chronilog",
+      "personal-project"
+    ],
+    "link": "posts/seventh-post.html",
+    "slug": "seventh-post",
+    "snippet": "A clean, configurable, and developer-friendly logging package for Python."
+  },
+  {
     "title": "📓 See Gray's Vision Is Live",
     "date": "2025-05-08",
     "tags": [

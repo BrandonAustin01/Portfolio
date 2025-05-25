@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>📓 Chronilog 🪵 • Brandon McKinney</title>
+  <link rel="stylesheet" href="../assets/css/normalize.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+  <link rel="icon" href="../assets/img/favicon.png" type="image/png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&family=Space+Mono&display=swap" rel="stylesheet" />
+</head>
+<body>
+  <header>
+    <nav>
+      <div class="nav-container">
+        <div class="brand">Brandon McKinney</div>
+        <button id="nav-toggle" aria-label="Toggle Menu">☰</button>
+        <ul id="nav-links">
+          <li><a href="../index.html">Home</a></li>
+          <li><a href="../archive.html" class="active">Archive</a></li>
+          <li><a href="../status.html">Status</a></li>
+          <li><a href="about.html">About</a></li>
+          <li><a href="https://github.com/BrandonAustin01" target="_blank">GitHub</a></li>
+          <li><button id="theme-toggle" aria-label="Toggle Theme">🌗</button></li>
+        </ul>
+      </div>
+    </nav>
+  </header>
+
+  <main class="projects">
+    <article class="journal-entry" id="seventh-post">
+      <h1>🪵 Chronilog</h1>
+<p><strong>Chronilog</strong> is a clean, configurable, and developer-friendly logging package for Python. It provides rich terminal output, rotating file logging, diagnostics, and full environment-based customization — all in a zero-hassle API.</p>
+<blockquote>
+<p>Designed for real-world projects that need stability, structure, and style in their logs.</p>
+</blockquote>
+<hr>
+<h2>🚀 Features</h2>
+<ul>
+<li>✅ <code>ChroniLog(name)</code> — powerful, configurable logger instance</li>
+<li>🎨 Rich console output with emoji support</li>
+<li>📁 Rotating file logs (configurable via <code>.env</code> or <code>.toml</code>)</li>
+<li>⚙️ Environment + TOML-based configuration layering</li>
+<li>🧪 Built-in diagnostics system (<code>print_diagnostics()</code>)</li>
+<li>🔄 Optional JSON logging</li>
+<li>🧰 Developer-first: testable, extensible, and production-ready</li>
+</ul>
+<hr>
+<h2>📦 Installation</h2>
+<pre><code class="language-bash">pip install -e .
+</code></pre>
+<blockquote>
+<p>Clone this repo and install it locally in editable mode during development.</p>
+</blockquote>
+<h2>🧠 Basic Usage</h2>
+<pre><code class="language-python">from chronilog import ChroniLog
+
+log = ChroniLog(&quot;my_app&quot;)
+
+log.info(&quot;🚀 App started&quot;)
+log.warning(&quot;⚠️ Something might be wrong...&quot;)
+log.error(&quot;❌ An error occurred!&quot;)
+</code></pre>
+<hr>
+<h2>⚙️ Configuration Options</h2>
+<p>Chronilog supports config from 3 layers:</p>
+<p><code>.env</code> file</p>
+<p><code>.chronilog.toml</code> file</p>
+<p>Built-in defaults</p>
+<h3>🔧 Example .env</h3>
+<pre><code class="language-ini">CHRONILOG_LOG_PATH=logs/my_app.log
+CHRONILOG_LOG_LEVEL=DEBUG
+CHRONILOG_LOG_MAX_MB=5
+CHRONILOG_LOG_BACKUP_COUNT=3
+CHRONILOG_JSON=0
+</code></pre>
+<hr>
+<h3>🧪 Diagnostic Mode</h3>
+<pre><code class="language-python">from chronilog.diagnostics import print_diagnostics
+
+print_diagnostics()
+</code></pre>
+<p>You’ll get a Rich-powered terminal table showing logger status and any setup issues.</p>
+<hr>
+<h2>✨ Customizing ChroniLog</h2>
+<p>You can override behavior with optional arguments:</p>
+<pre><code class="language-python">from chronilog import ChroniLog
+from chronilog.core.formatter import PlainFormatter
+
+log = ChroniLog(
+    name=&quot;myapp&quot;,
+    level=logging.INFO,
+    file_formatter=PlainFormatter(),
+    use_cache=False
+)
+</code></pre>
+<hr>
+<h3>🔎 Parameters</h3>
+<table>
+<thead>
+<tr>
+<th>Argument</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><code>name</code></td>
+<td><code>str</code></td>
+<td>Logger name (typically <code>__name__</code>)</td>
+</tr>
+<tr>
+<td><code>level</code></td>
+<td><code>int</code> <em>(optional)</em></td>
+<td>Custom log level (<code>logging.DEBUG</code>, etc)</td>
+</tr>
+<tr>
+<td><code>console_formatter</code></td>
+<td><code>Formatter</code></td>
+<td>Optional override for console formatter</td>
+</tr>
+<tr>
+<td><code>file_formatter</code></td>
+<td><code>Formatter</code></td>
+<td>Optional override for file formatter</td>
+</tr>
+<tr>
+<td><code>use_cache</code></td>
+<td><code>bool</code></td>
+<td>Whether to reuse existing logger by name</td>
+</tr>
+</tbody></table>
+<h2>📁 Default Log Paths</h2>
+<p>Automatically chooses safe OS-specific defaults:</p>
+<ul>
+<li><p>🪟 Windows → <code>%LOCALAPPDATA%/chronilog/logs/</code></p>
+</li>
+<li><p>🍎 macOS → <code>~/Library/Logs/chronilog/</code></p>
+</li>
+<li><p>🐧 Linux → <code>~/.local/share/chronilog/logs/</code></p>
+</li>
+</ul>
+<h3>🧪 Example Project Structure</h3>
+<pre><code class="language-bash">myapp/
+├── main.py
+├── .env
+├── logs/
+│   └── chronilog.log
+└── requirements.txt
+</code></pre>
+<hr>
+<h2>🧪 Example: <code>test_app.py</code></h2>
+<pre><code class="language-python">from chronilog import ChroniLog
+
+log = ChroniLog(&quot;test_app&quot;)
+
+log.info(&quot;🚀 Startup&quot;)
+log.debug(&quot;🔧 Debugging&quot;)
+log.warning(&quot;⚠️ Warning issued&quot;)
+log.error(&quot;❌ Error occurred&quot;)
+log.critical(&quot;🔥 Critical failure&quot;)
+</code></pre>
+<hr>
+<h2>🧪 Testing</h2>
+<pre><code class="language-bash">pytest tests/
+</code></pre>
+<p>Or run the built-in usage script:</p>
+<pre><code class="language-bash">python examples/usage.py
+</code></pre>
+<hr>
+<h2>📜 License</h2>
+<p>MIT License — free to use, modify, and contribute.</p>
+<h2>💡 Coming Soon</h2>
+<p><code>chronilog diagnostics</code> CLI tool</p>
+<p>JSON log viewer + filter</p>
+<p>Async logging support</p>
+<p>Release to PyPI (<code>pip install chronilog</code>)</p>
+<hr>
+<h2>🙌 Credits</h2>
+<p>Built with ❤️ by [Brandon McKinney]</p>
+
+    </article>
+  </main>
+
+  <footer>
+    <p>© 2025 Brandon McKinney</p>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+  <script>hljs.highlightAll();</script>
+</body>
+</html>

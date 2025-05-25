@@ -9,6 +9,15 @@
     "link": "https://github.com/BrandonAustin01/Chroniq"
   },
   {
+    "name": "Chronilog",
+    "icon": "🛠️",
+    "description": "A professional-grade logging package for Python",
+    "status": "development",
+    "version": "v1.0",
+    "lastUpdate": "2025-05-24",
+    "link": "https://github.com/BrandonAustin01/Chronilog"
+  },
+  {
     "name": "Caine",
     "icon": "🛠️",
     "description": "Caine is a modular, security-first Discord bot designed for stability, control, and customizability.",
