@@ -1,5 +1,14 @@
 [
   {
+    "name": "PlaytimeCore",
+    "icon": "🟢",
+    "description": "PlaytimeCore is a .NET-powered modular backend that provides rich Steam playtime tracking, smart analytics, and data export capabilities.",
+    "status": "operational",
+    "version": "v1.0.3",
+    "lastUpdate": "2025-06-24",
+    "link": "https://github.com/BrandonAustin01/PlaytimeCore"
+  },
+  {
     "name": "Chroniq",
     "icon": "🟢",
     "description": "CLI-first version manager and changelog tool",
@@ -10,9 +19,9 @@
   },
   {
     "name": "Chronilog",
-    "icon": "🛠️",
+    "icon": "🟢",
     "description": "A professional-grade logging package for Python",
-    "status": "development",
+    "status": "operational",
     "version": "v1.0",
     "lastUpdate": "2025-05-24",
     "link": "https://github.com/BrandonAustin01/Chronilog"
@@ -31,7 +40,7 @@
     "icon": "🟢",
     "description": "The world of See Gray's Vision, a personal project of CJ Gray.",
     "status": "operational",
-    "version": "v2.8.13",
+    "version": "v2.8.18",
     "lastUpdate": "2025-05-07",
     "link": "https://seegraysvision.com"
   },
