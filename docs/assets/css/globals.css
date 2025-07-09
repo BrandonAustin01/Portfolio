@@ -1,54 +1,62 @@
 /* ====== Base Theme Variables ====== */
 :root {
-    --bg: #0e0e0e;
-    --fg: #f5f5f5;
-    --accent: #00d1b2;
-  
-    --header-bg: #121212;
-    --card-bg: #1c1c1c;
-    --footer-bg: #111;
-    --hero-bg: linear-gradient(to bottom right, #1a1a1a, #2a2a2a);
-  
-    --font-main: 'Inter', sans-serif;
-    --font-mono: 'Space Mono', monospace;
-  }
-  
-  /* ====== Light Mode Variables ====== */
-  body.light {
-    --bg: #f4f4f7;
-    --fg: #1f1f1f;
-    --accent: #0077cc;
-  
-    --header-bg: #ffffff;
-    --card-bg: #ffffff;
-    --footer-bg: #f0f0f0;
-    --hero-bg: linear-gradient(to bottom right, #f6f6f9, #ffffff);
-  }
-  
-  /* ====== Global Styles ====== */
-  body {
-    background-color: var(--bg);
-    color: var(--fg);
-    font-family: var(--font-main);
-    line-height: 1.6;
-    margin: 0;
-    padding: 0;
-    transition: background 0.3s ease, color 0.3s ease;
-  }
-  
-  a {
-    color: var(--accent);
-    text-decoration: none;
-  }
-  
-  a:hover {
-    text-decoration: underline;
-  }
-  
-  /* 🔍 Accessibility Focus Styles */
-  a:focus,
-  button:focus {
-    outline: 2px dashed var(--accent);
-    outline-offset: 3px;
-  }
-  
+  --bg: #1e1e1e;
+  --fg: #f0f0f0;
+  --accent: #66ccff;
+
+  --header-bg: #272727;
+  --card-bg: #2f2f2f;
+  --footer-bg: #262626;
+  --hero-bg: linear-gradient(to bottom right, #1a1a1a, #2a2a2a);
+
+  --font-main: "Inter", sans-serif;
+  --font-mono: "Space Mono", monospace;
+}
+
+/* ====== Light Mode Variables ====== */
+body.light {
+  --bg: #f4f4f7;
+  --fg: #1f1f1f;
+  --accent: #0077cc;
+
+  --header-bg: #ffffff;
+  --card-bg: #ffffff;
+  --footer-bg: #f0f0f0;
+  --hero-bg: linear-gradient(to bottom right, #f6f6f9, #ffffff);
+}
+
+/* ====== Global Styles ====== */
+body {
+  background-color: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-main);
+  line-height: 1.6;
+  margin: 0;
+  padding: 0;
+  transition: background 0.3s ease, color 0.3s ease;
+  font-size: 17px; /* was default browser size */
+  letter-spacing: 0.1px;
+}
+
+a {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+/* 🔍 Accessibility Focus Styles */
+a:focus,
+button:focus {
+  outline: 2px dashed var(--accent);
+  outline-offset: 3px;
+}
+
+h1,
+h2,
+h3 {
+  font-weight: 700;
+  letter-spacing: -0.5px;
+}
