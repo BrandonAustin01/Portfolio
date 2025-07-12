@@ -2,234 +2,234 @@
 
 /* ====== 404 Not Found Page ====== */
 .not-found {
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    padding: 4rem 2rem;
-    background: var(--bg);
-    color: var(--fg);
-  }
-  
-  .not-found h1 {
-    font-size: 5rem;
-    margin-bottom: 1rem;
-  }
-  
-  .not-found p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-    opacity: 0.8;
-  }
-  
-  /* ====== Glitch Animation Element ====== */
-  .glitch {
-    position: relative;
-    color: var(--fg);
-    font-size: 5rem;
-    font-weight: 900;
-    font-family: var(--font-mono);
-    animation: glitch-flicker 2s infinite linear alternate-reverse;
-  }
-  
-  .glitch::before,
-  .glitch::after {
-    content: attr(data-text);
-    position: absolute;
-    left: 0;
-    width: 100%;
-    overflow: hidden;
-    color: var(--accent);
-    background: var(--bg);
-    clip: rect(0, 900px, 0, 0);
-  }
-  
-  .glitch::before {
-    animation: glitch-anim-1 2s infinite linear alternate-reverse;
-  }
-  
-  .glitch::after {
-    animation: glitch-anim-2 2s infinite linear alternate-reverse;
-  }
-  
-  /* ====== Easter Egg Popup ====== */
-  .egg-popup {
-    position: fixed;
-    bottom: 2rem;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: var(--accent);
-    color: var(--bg);
-    padding: 1rem 2rem;
-    border-radius: 8px;
-    font-weight: bold;
-    font-family: var(--font-mono);
-    font-size: 1rem;
-    z-index: 1000;
-    opacity: 0;
-    transition: opacity 0.5s ease;
-    box-shadow: 0 0 10px var(--accent);
-  }
-  
-  /* ====== Archive Section ====== */
-  
-  /* Each archive entry (like a blog post preview) */
-  .archive-entry {
-    background: var(--card-bg);
-    padding: 1rem;
-    margin-bottom: 1rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.3);
-  }
-  
-  .archive-entry strong {
-    font-size: 1.1rem;
-  }
-  
-  .archive-entry small {
-    display: block;
-    color: var(--fg);
-    opacity: 0.6;
-    margin-top: 0.2rem;
-  }
-  
-  /* Tag container inside archive entry */
-  .archive-entry .tags {
-    margin-top: 0.5rem;
-  }
-  
-  /* Individual tag style */
-  .archive-entry .tags span {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--bg);
-    font-size: 0.75rem;
-    padding: 0.25rem 0.5rem;
-    margin-right: 0.4rem;
-    border-radius: 0.25rem;
-    font-weight: bold;
-  }
-  
-  /* ====== Journal Entry Page ====== */
-  .journal-entry {
-    background: var(--card-bg);
-    padding: 2rem;
-    border-radius: 0.5rem;
-    box-shadow: 0 0 1rem rgba(0,0,0,0.2);
-    max-width: 800px;
-    margin: 4rem auto;
-  }
-  
-  .journal-entry h1 {
-    font-size: 2.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .journal-entry .meta {
-    font-size: 0.9rem;
-    color: var(--fg);
-    opacity: 0.7;
-    margin-bottom: 2rem;
-  }
-  
-  .journal-entry p {
-    margin-bottom: 1.25rem;
-    font-size: 1.05rem;
-    line-height: 1.7;
-  }
-  
-  /* ====== Recent Post Card ====== */
-  .recent-post {
-    padding: 3rem 2rem;
-    max-width: 800px;
-    margin: 0 auto;
-    text-align: center;
-  }
-  
-  .recent-post h2 {
-    font-size: 2rem;
-    margin-bottom: 1.5rem;
-    color: var(--accent);
-  }
-  
-  .post-card {
-    background: var(--card-bg);
-    border-radius: 0.75rem;
-    padding: 2rem;
-    text-align: left;
-    position: relative;
-    overflow: hidden;
-    box-shadow: 0 0 0.75rem rgba(0, 209, 178, 0.3);
-    animation: cardGlow 3s infinite ease-in-out, fadeSlideIn 0.8s ease-out forwards;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-  }
-  
-  .post-card:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 0 1.5rem rgba(0, 209, 178, 0.75);
-  }
-  
-  .post-card h3 {
-    font-size: 1.5rem;
-    margin-bottom: 0.5rem;
-  }
-  
-  .post-card small {
-    font-size: 0.9rem;
-    opacity: 0.7;
-  }
-  
-  .post-card .tags {
-    margin: 1rem 0 1rem;
-  }
-  
-  .post-card .tag {
-    display: inline-block;
-    background: var(--accent);
-    color: var(--bg);
-    font-size: 0.75rem;
-    padding: 0.25rem 0.6rem;
-    margin-right: 0.5rem;
-    border-radius: 0.3rem;
-    font-weight: 600;
-    transition: background 0.2s ease;
-  }
-  
-  .post-card .tag:hover {
-    background: #fff;
-    color: var(--accent);
-    cursor: default;
-  }
-  
-  /* 🔥 Multi-line clamped snippet preview */
-  .post-card .post-snippet {
-    font-size: 0.85rem;
-    opacity: 0.7;
-    line-height: 1.6;
-    margin-top: 1.2rem;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    max-height: calc(1.6em * 3);
-  }
-  
-  .post-card .btn {
-    display: inline-block;
-    background-color: var(--accent);
-    color: var(--bg);
-    padding: 0.6rem 1.2rem;
-    border-radius: 0.4rem;
-    font-weight: bold;
-    margin-top: 1rem;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-  }
-  
-  .post-card .btn:hover {
-    transform: scale(1.05);
-    box-shadow: 0 0 1rem var(--accent);
-  }
-  
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  background: var(--bg);
+  color: var(--fg);
+}
+
+.not-found h1 {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+}
+
+.not-found p {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  opacity: 0.8;
+}
+
+/* ====== Glitch Animation Element ====== */
+.glitch {
+  position: relative;
+  color: var(--fg);
+  font-size: 5rem;
+  font-weight: 900;
+  font-family: var(--font-mono);
+  animation: glitch-flicker 2s infinite linear alternate-reverse;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  color: var(--accent);
+  background: var(--bg);
+  clip: rect(0, 900px, 0, 0);
+}
+
+.glitch::before {
+  animation: glitch-anim-1 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  animation: glitch-anim-2 2s infinite linear alternate-reverse;
+}
+
+/* ====== Easter Egg Popup ====== */
+.egg-popup {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--accent);
+  color: var(--bg);
+  padding: 1rem 2rem;
+  border-radius: 8px;
+  font-weight: bold;
+  font-family: var(--font-mono);
+  font-size: 1rem;
+  z-index: 1000;
+  opacity: 0;
+  transition: opacity 0.5s ease;
+  box-shadow: 0 0 10px var(--accent);
+}
+
+/* ====== Archive Section ====== */
+
+/* Each archive entry (like a blog post preview) */
+.archive-entry {
+  background: var(--card-bg);
+  padding: 1rem;
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 0.4rem rgba(0, 0, 0, 0.3);
+}
+
+.archive-entry strong {
+  font-size: 1.1rem;
+}
+
+.archive-entry small {
+  display: block;
+  color: var(--fg);
+  opacity: 0.6;
+  margin-top: 0.2rem;
+}
+
+/* Tag container inside archive entry */
+.archive-entry .tags {
+  margin-top: 0.5rem;
+}
+
+/* Individual tag style */
+.archive-entry .tags span {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.5rem;
+  margin-right: 0.4rem;
+  border-radius: 0.25rem;
+  font-weight: bold;
+}
+
+/* ====== Journal Entry Page ====== */
+.journal-entry {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 0.5rem;
+  box-shadow: 0 0 1rem rgba(0, 0, 0, 0.2);
+  max-width: 800px;
+  margin: 4rem auto;
+}
+
+.journal-entry h1 {
+  font-size: 2.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.journal-entry .meta {
+  font-size: 0.9rem;
+  color: var(--fg);
+  opacity: 0.7;
+  margin-bottom: 2rem;
+}
+
+.journal-entry p {
+  margin-bottom: 1.25rem;
+  font-size: 1.05rem;
+  line-height: 1.7;
+}
+
+/* ====== Recent Post Card ====== */
+.recent-post {
+  padding: 3rem 2rem;
+  max-width: 800px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.recent-post h2 {
+  font-size: 2rem;
+  margin-bottom: 1.5rem;
+  color: var(--accent);
+}
+
+.post-card {
+  background: var(--card-bg);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 0 0.75rem rgba(0, 209, 178, 0.3);
+  animation: cardGlow 3s infinite ease-in-out,
+    fadeSlideIn 0.8s ease-out forwards;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.post-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 0 0.6rem rgba(0, 255, 200, 0.3);
+}
+
+.post-card h3 {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.post-card small {
+  font-size: 0.9rem;
+  opacity: 0.7;
+}
+
+.post-card .tags {
+  margin: 1rem 0 1rem;
+}
+
+.post-card .tag {
+  display: inline-block;
+  background: var(--accent);
+  color: var(--bg);
+  font-size: 0.75rem;
+  padding: 0.25rem 0.6rem;
+  margin-right: 0.5rem;
+  border-radius: 0.3rem;
+  font-weight: 600;
+  transition: background 0.2s ease;
+}
+
+.post-card .tag:hover {
+  background: #fff;
+  color: var(--accent);
+  cursor: default;
+}
+
+/* 🔥 Multi-line clamped snippet preview */
+.post-card .post-snippet {
+  font-size: 0.85rem;
+  opacity: 0.7;
+  line-height: 1.6;
+  margin-top: 1.2rem;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-height: calc(1.6em * 3);
+}
+
+.post-card .btn {
+  display: inline-block;
+  background-color: var(--accent);
+  color: var(--bg);
+  padding: 0.6rem 1.2rem;
+  border-radius: 0.4rem;
+  font-weight: bold;
+  margin-top: 1rem;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.post-card .btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 1rem var(--accent);
+}

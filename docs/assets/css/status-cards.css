@@ -1,163 +1,163 @@
 /* ====== Status Cards ====== */
 .status-card {
-    position: relative;
-    padding-left: 1.25rem;
-    padding-right: 1.25rem;
-    background: var(--card-bg);
-    margin-bottom: 1rem;
-    border-radius: 0.5rem;
-    overflow: visible;
-    transition: transform 0.2s ease;
-    z-index: 0;
+  position: relative;
+  padding-left: 1.25rem;
+  padding-right: 1.25rem;
+  background: var(--card-bg);
+  margin-bottom: 1rem;
+  border-radius: 0.5rem;
+  overflow: visible;
+  transition: transform 0.2s ease;
+  z-index: 0;
+}
+
+.status-card h3 {
+  margin: 0 0 0.5rem;
+}
+
+.status-card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  border-radius: 6px;
+  z-index: -1;
+  opacity: 1;
+  transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.version-badge {
+  background-color: var(--accent);
+  color: var(--bg);
+  font-size: 0.75rem;
+  padding: 0.15rem 0.5rem;
+  margin-left: 0.5rem;
+  border-radius: 0.25rem;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+/* ✅ Operational – soft green glow */
+.status-card.operational::before {
+  background-color: #00e676;
+  animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+@keyframes pulseGlow {
+  0%,
+  100% {
+    box-shadow: 0 0 0px #00e676;
   }
-  
-  .status-card h3 {
-    margin: 0 0 0.5rem;
+  50% {
+    box-shadow: 0 0 12px #00e676;
   }
-  
-  .status-card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 6px;
-    height: 100%;
-    border-radius: 6px;
-    z-index: -1;
-    opacity: 1;
-    transition: box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+/* 🧪 Experimental – morphing amber/yellow pulse */
+.status-card.experimental::before {
+  animation: experimentalPulse 1.6s infinite ease-in-out;
+  transform-origin: left center;
+}
+
+@keyframes experimentalPulse {
+  0% {
+    transform: scaleX(1);
+    background-color: #ff9100;
+    box-shadow: 0 0 0px #ff9100;
   }
-  
-  .version-badge {
-    background-color: var(--accent);
-    color: var(--bg);
-    font-size: 0.75rem;
-    padding: 0.15rem 0.5rem;
-    margin-left: 0.5rem;
-    border-radius: 0.25rem;
-    font-weight: 600;
-    vertical-align: middle;
-  }
-  
-  /* ✅ Operational – soft green glow */
-  .status-card.operational::before {
-    background-color: #00e676;
-    animation: pulseGlow 2.5s infinite ease-in-out;
-  }
-  
-  @keyframes pulseGlow {
-    0%, 100% {
-      box-shadow: 0 0 0px #00e676;
-    }
-    50% {
-      box-shadow: 0 0 12px #00e676;
-    }
-  }
-  
-  /* 🧪 Experimental – morphing amber/yellow pulse */
-  .status-card.experimental::before {
-    animation: experimentalPulse 1.6s infinite ease-in-out;
-    transform-origin: left center;
-  }
-  
-  @keyframes experimentalPulse {
-    0% {
-      transform: scaleX(1);
-      background-color: #ff9100;
-      box-shadow: 0 0 0px #ff9100;
-    }
-    50% {
-      transform: scaleX(1.3);
-      background-color: #ffcc00;
-      box-shadow: 0 0 12px #ffcc00;
-    }
-    100% {
-      transform: scaleX(1);
-      background-color: #ff9100;
-      box-shadow: 0 0 0px #ff9100;
-    }
-  }
-  
-  /* ❌ Down – shaky red glow */
-  .status-card.down::before {
-    background-color: #ff5252;
-    animation: wiggleGlow 0.4s infinite alternate ease-in-out;
-  }
-  
-  @keyframes wiggleGlow {
-    0% {
-      transform: translateX(0px);
-      box-shadow: 0 0 2px #ff5252;
-    }
-    100% {
-      transform: translateX(3px);
-      box-shadow: 0 0 12px #ff5252;
-    }
-  }
-  
-  /* 🧑‍💻 Development – cool blue glow */
-  .status-card.development::before {
-    animation: devGlowPulse 1.8s infinite ease-in-out;
-    transform-origin: left center;
-    background-color: #00e0ff;
-  }
-  
-  @keyframes devGlowPulse {
-    0% {
-      transform: scaleX(1);
-      background-color: #00e0ff;
-      box-shadow: 0 0 4px #00e0ff;
-    }
-    50% {
-      transform: scaleX(1.3);
-      background-color: #00b7ff;
-      box-shadow: 0 0 20px #00bfff;
-    }
-    100% {
-      transform: scaleX(1);
-      background-color: #00e0ff;
-      box-shadow: 0 0 4px #00e0ff;
-    }
-  }
-  
-  /* Hover lift */
-  .status-card:hover {
-    transform: translateY(-3px) scale(1.01);
-  }
-  
-  /* ====== Status Legend ====== */
-  .status-legend {
-    display: flex;
-    gap: 1.5rem;
-    margin: 1rem 0 2rem;
-    font-size: 0.95rem;
-    flex-wrap: wrap;
-  }
-  
-  .legend-item {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-  }
-  
-  .legend-dot {
-    width: 14px;
-    height: 14px;
-    border-radius: 50%;
-    display: inline-block;
-  }
-  
-  /* Match animations visually with flat colors */
-  .legend-dot.operational {
-    background-color: #00e676;
-  }
-  .legend-dot.experimental {
+  50% {
+    transform: scaleX(1.3);
     background-color: #ffcc00;
+    box-shadow: 0 0 12px #ffcc00;
   }
-  .legend-dot.development {
+  100% {
+    transform: scaleX(1);
+    background-color: #ff9100;
+    box-shadow: 0 0 0px #ff9100;
+  }
+}
+
+/* ❌ Down – shaky red glow */
+.status-card.down::before {
+  background-color: #ff5252;
+  animation: wiggleGlow 0.4s infinite alternate ease-in-out;
+}
+
+@keyframes wiggleGlow {
+  0% {
+    transform: translateX(0px);
+    box-shadow: 0 0 2px #ff5252;
+  }
+  100% {
+    transform: translateX(3px);
+    box-shadow: 0 0 12px #ff5252;
+  }
+}
+
+/* 🧑‍💻 Development – cool blue glow */
+.status-card.development::before {
+  animation: devGlowPulse 1.8s infinite ease-in-out;
+  transform-origin: left center;
+  background-color: #00e0ff;
+}
+
+@keyframes devGlowPulse {
+  0% {
+    transform: scaleX(1);
     background-color: #00e0ff;
+    box-shadow: 0 0 4px #00e0ff;
   }
-  .legend-dot.down {
-    background-color: #ff5252;
+  50% {
+    transform: scaleX(1.3);
+    background-color: #00b7ff;
+    box-shadow: 0 0 20px #00bfff;
   }
-  
+  100% {
+    transform: scaleX(1);
+    background-color: #00e0ff;
+    box-shadow: 0 0 4px #00e0ff;
+  }
+}
+
+/* Hover lift */
+.status-card:hover {
+  transform: translateY(-3px) scale(1.01);
+}
+
+/* ====== Status Legend ====== */
+.status-legend {
+  display: flex;
+  gap: 1.5rem;
+  margin: 1rem 0 2rem;
+  font-size: 0.95rem;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.legend-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+/* Match animations visually with flat colors */
+.legend-dot.operational {
+  background-color: #00e676;
+}
+.legend-dot.experimental {
+  background-color: #ffcc00;
+}
+.legend-dot.development {
+  background-color: #00e0ff;
+}
+.legend-dot.down {
+  background-color: #ff5252;
+}

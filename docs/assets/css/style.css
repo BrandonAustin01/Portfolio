@@ -1,8 +1,8 @@
 /* ====== Master Style Import ====== */
-@import url('globals.css');
-@import url('layout.css');
-@import url('components.css');
-@import url('status-cards.css');
-@import url('animations.css');
-@import url('pages.css');
-@import url('theme.css');
+@import url("globals.css");
+@import url("layout.css");
+@import url("components.css");
+@import url("status-cards.css");
+@import url("animations.css");
+@import url("pages.css");
+@import url("theme.css");
