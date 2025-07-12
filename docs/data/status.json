@@ -4,7 +4,7 @@
     "icon": "🟢",
     "description": "PlaytimeCore is a .NET-powered modular backend that provides rich Steam playtime tracking, smart analytics, and data export capabilities.",
     "status": "operational",
-    "version": "v1.0.3",
+    "version": "v2.0.0",
     "lastUpdate": "2025-06-24",
     "link": "https://github.com/BrandonAustin01/PlaytimeCore"
   },
@@ -40,7 +40,7 @@
     "icon": "🟢",
     "description": "The world of See Gray's Vision, a personal project of CJ Gray.",
     "status": "operational",
-    "version": "v2.8.18",
+    "version": "v6.2.4",
     "lastUpdate": "2025-05-07",
     "link": "https://seegraysvision.com"
   },
