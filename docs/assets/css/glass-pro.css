@@ -1,0 +1,364 @@
+/* =========================================================
+   Liquid Glass — iOS 26 Style (Full Drop-In Replacement)
+   Place after your existing styles.
+   ========================================================= */
+
+/* ---------- Tokens ---------- */
+:root {
+  --lg-blur: 34px; /* 28–40 for stronger refraction */
+  --lg-radiusX: 28px; /* “superellipse” horizontal radius */
+  --lg-radiusY: 24px; /* “superellipse” vertical radius */
+  --lg-shadow: rgba(0, 0, 0, 0.6);
+
+  --lg-fill: rgba(255, 255, 255, 0.1); /* base glass fill */
+
+  /* Tint overlays (Control Center vibe) */
+  --lg-tint-blue: rgba(134, 192, 255, 0.42);
+  --lg-tint-pink: rgba(250, 113, 173, 0.36);
+  --lg-tint-amber: rgba(255, 210, 90, 0.3);
+
+  --lg-saturate: 180%;
+  --lg-contrast: 115%;
+}
+
+/* ---------- Scene (background & film grain) ---------- */
+.lg-scene {
+  position: relative;
+  overflow: hidden;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0f1318, #0f1219 38%, #141018 100%);
+  color: #eef0f3;
+}
+
+/* Blurry color blobs—what the glass refracts */
+.lg-blob {
+  position: absolute;
+  width: 700px;
+  height: 700px;
+  border-radius: 50%;
+  filter: blur(90px);
+  opacity: 0.75;
+  pointer-events: none;
+  transform: translateZ(0);
+}
+.lg-blob.a {
+  background: #62a9ff;
+  left: -160px;
+  top: -180px;
+}
+.lg-blob.b {
+  background: #ff6ec7;
+  right: -220px;
+  top: -20px;
+}
+.lg-blob.c {
+  background: #ffd166;
+  left: 22%;
+  bottom: -240px;
+  width: 820px;
+  height: 820px;
+}
+
+/* Subtle film grain */
+.lg-noise::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.06;
+  mix-blend-mode: overlay;
+  background-image: url("data:image/svg+xml;utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E");
+  background-size: 320px 320px;
+}
+
+/* ---------- Liquid Glass Tile ---------- */
+.lg-tile {
+  position: relative;
+  border-radius: var(--lg-radiusX) / var(--lg-radiusY); /* superellipse-ish */
+  isolation: isolate; /* keep blends local */
+
+  /* Multi-layer fill; tints are added via extra classes below */
+  background: var(--lg-fill);
+
+  /* Heavy glass processing */
+  -webkit-backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate))
+    contrast(var(--lg-contrast));
+  backdrop-filter: blur(var(--lg-blur)) saturate(var(--lg-saturate))
+    contrast(var(--lg-contrast));
+
+  /* Ambient shadow + inner hairlines */
+  box-shadow: 0 28px 70px var(--lg-shadow),
+    0 2px 0 rgba(255, 255, 255, 0.1) inset, 0 -2px 0 rgba(0, 0, 0, 0.3) inset;
+
+  /* Gradient rim using border-layer trick */
+  border: 1px solid transparent;
+  background-image: linear-gradient(#0000, #0000),
+    /* inner fill */
+      linear-gradient(
+        180deg,
+        rgba(255, 255, 255, 0.4),
+        rgba(255, 255, 255, 0.1)
+      ); /* outer rim */
+  background-clip: padding-box, border-box;
+  background-origin: padding-box, border-box;
+
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+.lg-tile:hover {
+  transform: translateY(-4px);
+}
+
+/* Inner ring (hairline) */
+.lg-tile::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.35);
+  opacity: 0.45;
+}
+
+/* Curved top glare (makes the glass feel “thick”) */
+.lg-tile::after {
+  content: "";
+  position: absolute;
+  left: 5%;
+  right: 5%;
+  top: 0;
+  height: 42%;
+  border-radius: 0 0 90% 90% / 0 0 65% 65%;
+  background: radial-gradient(
+    120% 90% at 50% -10%,
+    rgba(255, 255, 255, 0.65),
+    rgba(255, 255, 255, 0) 60%
+  );
+  filter: blur(1.2px);
+  opacity: 0.55;
+  pointer-events: none;
+}
+
+/* Diagonal specular sweep */
+.lg-gloss {
+  position: relative;
+  overflow: hidden;
+}
+.lg-gloss::after {
+  content: "";
+  position: absolute;
+  inset: -18%;
+  background: conic-gradient(
+    from 205deg at 50% 50%,
+    rgba(255, 255, 255, 0) 0deg,
+    rgba(255, 255, 255, 0.35) 24deg,
+    rgba(255, 255, 255, 0) 70deg,
+    rgba(255, 255, 255, 0.22) 96deg,
+    rgba(255, 255, 255, 0) 130deg
+  );
+  mix-blend-mode: screen;
+  opacity: 0.45;
+  transform: rotate(6deg);
+  pointer-events: none;
+}
+
+/* Inner bevel (soft-light depth) */
+.lg-bevel::before {
+  content: "";
+  position: absolute;
+  inset: 1px;
+  border-radius: calc(var(--lg-radiusX) - 1px) / calc(var(--lg-radiusY) - 1px);
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 0, 0, 0.12)
+  );
+  mix-blend-mode: soft-light;
+  opacity: 0.35;
+  pointer-events: none;
+}
+
+/* Optional animated sheen on hover */
+.lg-sheen {
+  position: relative;
+  overflow: hidden;
+}
+.lg-sheen::after {
+  content: "";
+  position: absolute;
+  top: -40%;
+  left: -60%;
+  width: 120%;
+  height: 180%;
+  background: linear-gradient(
+    60deg,
+    rgba(255, 255, 255, 0) 40%,
+    rgba(255, 255, 255, 0.45) 50%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  transform: translateX(-60%) rotate(8deg);
+  opacity: 0;
+  transition: opacity 0.22s ease, transform 0.8s ease;
+  mix-blend-mode: screen;
+  pointer-events: none;
+}
+.lg-sheen:hover::after {
+  opacity: 0.35;
+  transform: translateX(40%) rotate(8deg);
+}
+
+/* ---------- Tints (combine with .lg-tile) ---------- */
+.lg-tint-blue {
+  background: linear-gradient(
+      to bottom right,
+      var(--lg-tint-blue),
+      rgba(134, 192, 255, 0) 60%
+    ),
+    var(--lg-fill);
+}
+.lg-tint-pink {
+  background: linear-gradient(
+      to bottom right,
+      var(--lg-tint-pink),
+      rgba(250, 113, 173, 0) 60%
+    ),
+    var(--lg-fill);
+}
+.lg-tint-amber {
+  background: linear-gradient(
+      to bottom right,
+      var(--lg-tint-amber),
+      rgba(255, 210, 90, 0) 60%
+    ),
+    var(--lg-fill);
+}
+
+/* ---------- Content helpers ---------- */
+.lg-pad {
+  padding: 1.25rem 1.35rem;
+}
+.lg-title {
+  font-weight: 800;
+  letter-spacing: 0.2px;
+  font-size: 1.1rem;
+}
+.lg-sub {
+  opacity: 0.86;
+}
+
+/* ---------- iOS-style Capsule Control ---------- */
+.lg-capsule {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.12);
+  -webkit-backdrop-filter: blur(22px) saturate(var(--lg-saturate));
+  backdrop-filter: blur(22px) saturate(var(--lg-saturate));
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  box-shadow: 0 16px 36px rgba(0, 0, 0, 0.5);
+}
+.lg-capsule .dot {
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle at 35% 30%,
+    rgba(255, 255, 255, 0.9),
+    rgba(255, 255, 255, 0.3) 40%,
+    rgba(255, 255, 255, 0) 60%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.28);
+}
+
+/* ---------- Sticky glass header (optional) ---------- */
+header.lg-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.1);
+  -webkit-backdrop-filter: blur(24px) saturate(170%);
+  backdrop-filter: blur(24px) saturate(170%);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.18);
+  box-shadow: 0 14px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* ---------- Fallbacks & Accessibility ---------- */
+@supports not (
+  (-webkit-backdrop-filter: blur(1px)) or (backdrop-filter: blur(1px))
+) {
+  .lg-tile,
+  .lg-capsule,
+  header.lg-toolbar {
+    background: #232323;
+  }
+  .lg-blob {
+    display: none;
+  }
+}
+@media (prefers-reduced-transparency: reduce) {
+  .lg-tile,
+  .lg-capsule,
+  header.lg-toolbar {
+    -webkit-backdrop-filter: none;
+    backdrop-filter: none;
+    background: #232323;
+  }
+}
+@media (forced-colors: active) {
+  .lg-tile,
+  .lg-capsule,
+  header.lg-toolbar {
+    border: 1px solid ButtonText;
+    background: Canvas;
+    box-shadow: none;
+  }
+}
+
+/* ====== Liquid Glass: hover control & glossy boosts (added) ====== */
+
+/* Only tiles with .lg-hover lift */
+.lg-tile:hover {
+  transform: none;
+}
+.lg-tile.lg-hover:hover {
+  transform: translateY(-4px);
+}
+
+/* brighter curved glare */
+.lg-tile::after {
+  opacity: 0.62;
+  filter: blur(1px);
+}
+
+/* punchier diagonal specular */
+.lg-gloss::after {
+  opacity: 0.52;
+  transform: rotate(5deg);
+}
+
+/* stronger tints */
+.lg-tint-blue {
+  background: linear-gradient(
+      to bottom right,
+      rgba(134, 192, 255, 0.5),
+      rgba(134, 192, 255, 0) 60%
+    ),
+    var(--lg-fill);
+}
+.lg-tint-pink {
+  background: linear-gradient(
+      to bottom right,
+      rgba(250, 113, 173, 0.44),
+      rgba(250, 113, 173, 0) 60%
+    ),
+    var(--lg-fill);
+}
+.lg-tint-amber {
+  background: linear-gradient(
+      to bottom right,
+      rgba(255, 210, 90, 0.38),
+      rgba(255, 210, 90, 0) 60%
+    ),
+    var(--lg-fill);
+}
